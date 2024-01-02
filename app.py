@@ -549,10 +549,11 @@ def actualizar_datos(n_clicks, current_data):
     else:
         return current_data
 
+MONGODB_URI = os.getenv('MONGODB_URI')  # Obtén la URL de conexión desde las variables de entorno
+client = MongoClient(MONGODB_URI)
+db = client['ControlDeLaProduccion']  # nombre de la base de datos
+collection = db['Reto']  # nombre de la colección
 
 if __name__ == '__main__':
-    MONGODB_URI = os.getenv('MONGODB_URI')  # Obtén la URL de conexión desde las variables de entorno
-    client = MongoClient(MONGODB_URI)
-    db = client['ControlDeLaProduccion']  # nombre de la base de datos
-    collection = db['Reto']  # nombre de la colección
+
     app.run_server(debug=True)
